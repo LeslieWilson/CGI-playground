@@ -31,7 +31,7 @@ print ("""
 <head>
 <title>Leslie Cookie Monster's Monstah Cookie Demo</title>
 <link rel= "stylesheet"
-	href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre"
+		href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Anonymous+Pro">
 <style type="text/css">
@@ -56,31 +56,32 @@ font-size: 80%;
 </head>
 <body>
  <p>whomever's name appears below, is the Queen of the World.</p>
-
-print """
- <p><b>let it be KNOWN
-<span style="font-weight:bold; color:{0};">{0}</span>.</b></p>
-""".format(queens_name)
+""")
 
 print ("""
-<form action= "nateStayawayFromthis.py" method = "get"> Who is the almighty queen?<input name= "question">
+ <p><b>let it be KNOWN
+<span style="font-weight:bold; color:{0};">{0}</span>.</b></p>
+""").format(queens_name)
+
+print ("""
+<form action= "CookieDemo.py" method = "get"> Who is the almighty queen?<input name= "question">
 	<input value= "submit queen"style= "font-size:0.6em;  type="submit">
 </form>
-"""
+""")
 
-print "<table><caption>environment</caption>"
-env = get_environment()
-for key in sortedenv.keys()):
-	print"<tr><td>{}</td><td>{}</td></tr>".format(key, env,[key])
-print "</table>"
+print("<table><caption>environment</caption>"
+env = get_environment())
+for key in sorted(env.keys()):
+	print("<tr><td>{}</td><td>{}</td></tr>").format(key, env,[key]))
+print( "</table>")
 
-print """
+print( """
 <footer style="float:right">
 Leslie Wilson | MIT License | 2018 | leslie@leslienate.tech |
-<a href="cookie.txt">source</a>
+
 </footer>
 </body>
 </html> 
-"""
+""")
  
 
