@@ -64,15 +64,15 @@ print ("""
 """).format(queens_name)
 
 print ("""
-<form action= "CookieDemo.py" method = "get"> Who is the almighty queen?<input name= "question">
-	<input value= "submit queen"style= "font-size:0.6em;  type="submit">
+<form method = "get" action = ""> Who is the almighty queen?<input name= "question">
+	<input value= "submit queen" style="font-size: 0.6em";  type="submit">
 </form>
 """)
 
-print("<table><caption>environment</caption>"
-env = get_environment())
+print("<table><caption>environment</caption>")
+env = get_environment()
 for key in sorted(env.keys()):
-	print("<tr><td>{}</td><td>{}</td></tr>").format(key, env,[key]))
+	print("<tr><td>{}</td><td>{}</td></tr>").format(key, env[key])
 print( "</table>")
 
 print( """
