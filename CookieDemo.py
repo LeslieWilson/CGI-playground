@@ -29,20 +29,58 @@ print ("""
 <!doctype html>
 <html>
 <head>
+<title>Leslie Cookie Monster's Monstah Cookie Demo</title>
+<link rel= "stylesheet"
+	href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre"
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Anonymous+Pro">
+<style type="text/css">
 		
- <Title>Leslie Cookie Monster's Monster Cookie Demo</Title>
-
+body { font-family: 'Averia Serif Libre', serif; }
+td { border: 1px solid; }
+table {
+margin: 1em;
+font-family: 'Anonymous Pro', monospace;
+font-size: 60%;
+}
+caption {
+text-align: left;
+margin-left: 2em;
+font-weight:bold;
+}
+h1, footer { color:#666; }
+footer {
+font-size: 80%;
+}
+</style>
 </head>
 <body>
  <p>whomever's name appears below, is the Queen of the World.</p>
- <p><b>let it be KNOWN</b></p>""")  
+
+print """
+ <p><b>let it be KNOWN
+<span style="font-weight:bold; color:{0};">{0}</span>.</b></p>
+""".format(queens_name)
 
 print ("""
 <form action= "nateStayawayFromthis.py" method = "get"> Who is the almighty queen?<input name= "question">
-	<input value= "submit queen" type="submit">
-		</form>
+	<input value= "submit queen"style= "font-size:0.6em;  type="submit">
+</form>
+"""
 
-		</body>
-		</html> """)
+print "<table><caption>environment</caption>"
+env = get_environment()
+for key in sortedenv.keys()):
+	print"<tr><td>{}</td><td>{}</td></tr>".format(key, env,[key])
+print "</table>"
 
+print """
+<footer style="float:right">
+Leslie Wilson | MIT License | 2018 | leslie@leslienate.tech |
+<a href="cookie.txt">source</a>
+</footer>
+</body>
+</html> 
+"""
+ 
 
