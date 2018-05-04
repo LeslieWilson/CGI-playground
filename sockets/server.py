@@ -1,7 +1,16 @@
+"""
+Leslie Wilson
+April 18 2018
+server.py
+
+
+Summary: This code creates a server-side socket that connects to a client.
+It receives a "fortune" from the client side, then reverses it and sends it
+back
+"""
+
 # first of all import the socket library
 import socket
-
-
 # next create a socket object
 s = socket.socket()
 print "Socket successfully created"
@@ -25,22 +34,17 @@ print "socket is listening"
 # a forever loop until we interrupt it or
 # an error occurs
 while True:
-
    # Establish connection with client.
    c, addr = s.accept()
    print 'Got connection from', addr
 
-   # send a thank you message to the client.
-   
-   c.send("you connected")
-
-
-
-
-
-
    # receive data from the server
-   print c.recv(1024)
+   response =  c.recv(1024)
+
+   # reverse the fortune
+   reversedFortune = fortune[::-1]
+   # send reversed fortune back to client
+   c.send(reversedFortune)
 
    # Close the connection with the client
    c.close()
