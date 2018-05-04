@@ -3,9 +3,6 @@ import socket
 from threading import Thread
 
 
-
-# put this in a function
-
 def accept_incoming_connections():
     while True:
        c, addr = s.accept()
@@ -14,22 +11,22 @@ def accept_incoming_connections():
        addresses[c] = addr
        Thread(target=handle_client, args=(c,)).start()
 
-def handle_client(c)
+def broadcast(msg):
+    for sock in clients:
+        sock.send(msg)
+
+def handle_client(c):
     name = c.recv(1024)
-    c.send(welcome)
     msg = "%s has joing the chat" % name
     broadcast(msg)
-    clients(c) = name
-
+    clients[c] = name
 
     while True:
         msg = c.recv(1024)
+        broadcast(msg, name+ ":")
         client.close()
         break
 
-def broadcast(msg)
-    for sock in clients:
-        sock.send(msg)
 
 clients = {}
 addresses = {}
@@ -40,7 +37,6 @@ print "Socket successfully created"
 port = 12345
 s.bind(('', port))
 print "socket binded to %s" %(port)
-
 
 # # name of function
 #    chat = newfunction[]
