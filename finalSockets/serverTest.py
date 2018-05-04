@@ -1,39 +1,56 @@
-# first of all import the socket library
+
 import socket
-# next create a socket object
+from threading import Thread
+# from functionTest import *
+
+# # name of function
+#    chat = newfunction[]
+#    # send reversed fortune back to client
+#    c.send(chat)
+#    msg = "%s has joind the chat!" % name
+#    clients[c] = name
+#         while True:
+#             msg = c.recv(1024)
+#             if msg != "quit":
+#                 return(msg, name=": ")
+# Close the connection with the client
+
+def accept_incoming_connections():
+    while True:
+       c, addr = s.accept()
+       print 'Got connection from', addr
+       c.send("greetings!" + "type your name and press enter")
+       addresses[c] = addr
+       Thread(target=handle_client, args=(c,)).start()
+
+def broadcast(msg):
+    for sock in clients:
+        sock.send(msg)
+
+def handle_client(c):
+    name = c.recv(1024)
+    msg = "%s has joing the chat" % name
+    broadcast(msg)
+    clients[c] = name
+    while True:
+        msg = c.recv(1024)
+        break
+
+clients = {}
+addresses = {}
+
 s = socket.socket()
 print "Socket successfully created"
-
-# reserve a port on your computer in our
-# case it is 12345 but it can be anything
 port = 12345
-
-# Next bind to the port
-# we have not typed any ip in the ip field
-# instead we have inputted an empty string
-# this makes the server listen to requests
-# coming from other computers on the network
 s.bind(('', port))
 print "socket binded to %s" %(port)
 
-# put the socket into listening mode
-s.listen(5)
-print "socket is listening"
+if __name__ == "__main__":
+    s.listen(5)
+    print "waiting for connection..."
+    ACCEPT_THREAD = Thread(target=accept_incoming_connections)
+    ACCEPT_THREAD.start()
+    ACCEPT_THREAD.join()
+    s.close()
 
-# a forever loop until we interrupt it or
-# an error occurs
-while True:
-   # Establish connection with client.
-   c, addr = s.accept()
-   print 'Got connection from', addr
-
-   # receive data from the server
-   response =  c.recv(1024)
-
-# name of function
-   chat = newfunction[]
-   # send reversed fortune back to client
-   c.send(chat)
-
-   # Close the connection with the client
-   c.close()
+# can you like help me set it up to be more simple im kind of confusing myself
