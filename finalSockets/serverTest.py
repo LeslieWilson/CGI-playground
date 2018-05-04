@@ -1,7 +1,19 @@
 
 import socket
 from threading import Thread
+# from functionTest import *
 
+# # name of function
+#    chat = newfunction[]
+#    # send reversed fortune back to client
+#    c.send(chat)
+#    msg = "%s has joind the chat!" % name
+#    clients[c] = name
+#         while True:
+#             msg = c.recv(1024)
+#             if msg != "quit":
+#                 return(msg, name=": ")
+# Close the connection with the client
 
 def accept_incoming_connections():
     while True:
@@ -20,17 +32,12 @@ def handle_client(c):
     msg = "%s has joing the chat" % name
     broadcast(msg)
     clients[c] = name
-
     while True:
         msg = c.recv(1024)
-        broadcast(msg, name+ ":")
-        client.close()
         break
-
 
 clients = {}
 addresses = {}
-
 
 s = socket.socket()
 print "Socket successfully created"
@@ -38,22 +45,12 @@ port = 12345
 s.bind(('', port))
 print "socket binded to %s" %(port)
 
-# # name of function
-#    chat = newfunction[]
-#    # send reversed fortune back to client
-#    c.send(chat)
-#    msg = "%s has joind the chat!" % name
-#    clients[c] = name
-#         while True:
-#             msg = c.recv(1024)
-#             if msg != "quit":
-#                 return(msg, name=": ")
-# Close the connection with the client
-
 if __name__ == "__main__":
     s.listen(5)
-    print "socket is listening"
+    print "waiting for connection..."
     ACCEPT_THREAD = Thread(target=accept_incoming_connections)
     ACCEPT_THREAD.start()
     ACCEPT_THREAD.join()
     s.close()
+
+# can you like help me set it up to be more simple im kind of confusing myself
