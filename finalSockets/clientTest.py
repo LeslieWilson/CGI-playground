@@ -1,16 +1,26 @@
 # Import socket module
 import socket
 
+# setting client socket
 client_socket = socket.socket()
-port = 12348
+# sets port
+port = 12346
+# connects client to ip address and port
 client_socket.connect(('127.0.0.1', port))
-
+# sets whatever is received by client socket to variable called greeting
 greeting = client_socket.recv(1024)
 print greeting
+# loops until it fails
 while True:
-    chat = raw_input("what would you like to say?")
+    # user needs to put in name and message
+    name = raw_input ("Please enter your name")
+    chat = raw_input("Begin Chat!")
+    # socket sends name and chat inputs
+    client_socket.send(name)
     client_socket.send(chat)
+    # sets whatever socket receives as "response" variable
     response = client_socket.recv(1024)
+    # prints response variable on client side
     print response
 
 

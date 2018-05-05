@@ -16,7 +16,7 @@ class Chat(object):
         while client0msg != "quit" and client1msg != "quit":
             client0msg = self.clients[0].recv(1028)
             client1msg = self.clients[1].recv(1028)
-            self.broadcast("chat1 says: " + client0msg + "chat2 says: " + client1msg)
+            self.broadcast("{name}: " + client0msg + "{name}: " + client1msg)
 
 def testchat(clients):
     chat = Chat(clients)

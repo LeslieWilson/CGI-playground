@@ -1,24 +1,36 @@
-
+# imports socket module
 import socket
+# imports threading module
 from threading import Thread
+# imports functiontest2 from my files
 from functiontest2 import *
 
 
 def comboInitiate():
-    port=12348
-    s = socket.socket()
-    s.bind(('', port))
+    '''
+    Function sets server socket, binds it to ip address, accepts 2 clients into
+    an array. Starts a new Thread that initiaties chat between two accepted
+    clients.
+
+    '''
+
+    port=12346
+    server_socket = socket.socket()
+    server_socket.bind(('', port))
     print "socket binded to %s" %(port)
     while True:
         clients = []
-        s.listen(2)
+        server_socket.listen(2)
         print "waiting for connection..."
-        (clientsocket, addr) = s.accept()
+        # double set, clientsocket and address. .accept method takes a connect and extrats the clientsocket id(portnumber?) and address
+        (clientsocket, addr) = server_socket.accept()
         clients.append(clientsocket)
-        (clientsocket, addr) = s.accept()
+        (clientsocket, addr) = server_socket.accept()
+        # taking port number and appending to array clients, you'll have multiple users
         clients.append(clientsocket)
-        ACCEPT_THREAD = Thread(target=testchat, args = (clients,))
-        ACCEPT_THREAD.start()
+        # sending arguments (from clients array) to target, which is the testchat function in this case.
+        START_CHAT = Thread(target=testchat, args = (clients,))
+        START_CHAT.start()
 
 
 comboInitiate()
