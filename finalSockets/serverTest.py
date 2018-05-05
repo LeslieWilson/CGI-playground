@@ -1,3 +1,9 @@
+
+'''
+Leslie Wilson
+serverTest.py
+May 5, 2018
+'''
 # imports socket module
 import socket
 # imports threading module
@@ -14,7 +20,7 @@ def comboInitiate():
 
     '''
 
-    port=12346
+    port=12342
     server_socket = socket.socket()
     server_socket.bind(('', port))
     print "socket binded to %s" %(port)

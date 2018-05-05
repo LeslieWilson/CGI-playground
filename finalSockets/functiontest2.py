@@ -1,22 +1,43 @@
 
+'''
+Leslie Wilson
+functiontest.py
+May 5, 2018
+'''
+
 
 class Chat(object):
-    def __init__(self, clients):
-        self.clients = clients
+    '''
+    This object initiates chat between two clients
+    '''
 
+    def __init__(self, clients):
+        # initiaties clients from clients array
+        self.clients = clients
+        # sends the message(can be input, automated message whatever)
     def broadcast(self, msg):
         for client in self.clients:
             client.send(msg)
-
+        # initiates chat, sets
     def two_person_chat(self):
-        msg = "hello, welcome to chat, at any point type quit if you would like to end convo"
-        self.broadcast(msg)
+        greeting = "hello, welcome to chat, at any point type quit if you would like to end convo. please type your name"
+        self.broadcast(greeting)
+        # sets as empty so it can receive and save the raw inputs
         client0msg = ""
         client1msg = ""
-        while client0msg != "quit" and client1msg != "quit":
+        client0name = self.clients[0].recv(1028)
+        client1name = self.clients[1].recv(1028)
+        self.broadcast("hello {}, and {}, let's begin chat!".format(client0name, client1name))
+        while True:
+            if client0msg == "quit" or client1msg == "quit":
+                self.broadcast("the chat is ending, goodbye!")
+                break
+            # makes connection between when chat program receives message
+            # from first and second user in clients array
             client0msg = self.clients[0].recv(1028)
             client1msg = self.clients[1].recv(1028)
-            self.broadcast("{name}: " + client0msg + "{name}: " + client1msg)
+
+            self.broadcast("{}: ".format(client0name) + client0msg + "\n{}: ".format(client1name) + client1msg)
 
 def testchat(clients):
     chat = Chat(clients)

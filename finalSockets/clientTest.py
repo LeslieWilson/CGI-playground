@@ -1,22 +1,30 @@
+'''
+Leslie Wilson
+clientTest.py
+May 5, 2018
+'''
+
 # Import socket module
 import socket
 
 # setting client socket
 client_socket = socket.socket()
 # sets port
-port = 12346
+port = 12342
 # connects client to ip address and port
 client_socket.connect(('127.0.0.1', port))
 # sets whatever is received by client socket to variable called greeting
 greeting = client_socket.recv(1024)
 print greeting
+name = raw_input('')
+client_socket.send(name)
+begin_chat = client_socket.recv(1024)
+print begin_chat
 # loops until it fails
 while True:
     # user needs to put in name and message
-    name = raw_input ("Please enter your name")
-    chat = raw_input("Begin Chat!")
+    chat = raw_input("Type your message!")
     # socket sends name and chat inputs
-    client_socket.send(name)
     client_socket.send(chat)
     # sets whatever socket receives as "response" variable
     response = client_socket.recv(1024)
